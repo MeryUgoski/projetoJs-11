@@ -1,27 +1,63 @@
+function initMap() {
 $(document).ready(function(){
-    const botao = $('button');
+    $('.sidenav').sidenav();
+
+    const botaoCep = $('#procurar-cep');
+    const botaoMapa = $('#botao-mapa');
+    $('#div-numero').hide();
     let resultado = $('#resultado');
-    
 
-
-
-    botao.click(function(){
+    botaoCep.click(function(){
+        $('#div-numero').show();
+         $('#div-cep').hide();
         let cep = $('#cep-usuario').val();
         const api=`https://viacep.com.br/ws/${cep}/json` ;
         $.getJSON(api,function(retorno_api){
-            console.log(retorno_api);
         
-        resultado.html(`
-            <p>&nbsp </p>
-            <p>${retorno_api.logradouro}</p>
-            <p>Bairro: ${retorno_api.bairro}</p>
-            <p>Cidade : ${retorno_api.localidade}</p>
-            <p>Estado : ${retorno_api.uf}</p>
+          resultado.html(`
+            <div class="collection">
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">location_on</i> ${retorno_api.logradouro}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">map</i> Bairro: ${retorno_api.bairro}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">location_city</i> Cidade : ${retorno_api.localidade}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">business</i> Estado : ${retorno_api.uf}</a>
+            </div>
+
             `);
-       
-      
-        });
-        
+            botaoMapa.click(function(){
+                 $('#div-cep').show();
+                let rua = retorno_api.logradouro;
+                let numeroCasa = $('#numero-casa').val();
+                let enderecoCompleto = `${rua} ${numeroCasa}`;
+                // Geocoding
+                // Geocoding
+                let gerarMapa = `https://maps.googleapis.com/maps/api/geocode/json?address=${enderecoCompleto}&key=AIzaSyAlijoQhZde8cSi00VngVwAlmBbr7VdbGE`;
+                // Fim Geocoding
+                $.getJSON(gerarMapa, function(retorno_api){
+                    var coords = retorno_api.results[0].geometry.location;
+                         // Maps
+                         // Maps
+                        // The location of Uluru
+                    let pinoLocal = coords;
+                    // The map, centered at pinoLocal
+                    let map = new google.maps.Map(
+                    document.getElementById('map'), {
+                        zoom: 15, 
+                        center: pinoLocal
+                    });
+                    // The marker, positioned at pinoLocal
+                    let marker = new google.maps.Marker({position: pinoLocal, map: map});
+                    // Fim Maps
+                });
+            });
+          
+        }); 
+
     });
+
+            // Initialize and add the map
+
+
+
     
   });
+}
