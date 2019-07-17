@@ -16,10 +16,10 @@ $(document).ready(function(){
         
           resultado.html(`
             <div class="collection">
-                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">location_on</i> ${retorno_api.logradouro}</a>
-                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">map</i> Bairro: ${retorno_api.bairro}</a>
-                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">location_city</i> Cidade : ${retorno_api.localidade}</a>
-                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-2">business</i> Estado : ${retorno_api.uf}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-3">location_on</i> ${retorno_api.logradouro}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-3">map</i> Bairro: ${retorno_api.bairro}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-3">location_city</i> Cidade : ${retorno_api.localidade}</a>
+                <a href="#!" class="collection-item alinhar-centro-v"><i class="material-icons  teal-text text-accent-3">business</i> Estado : ${retorno_api.uf}</a>
             </div>
 
             `);
