@@ -49,6 +49,7 @@ $(document).ready(function(){
                     // Fim Maps
                 });
             });
+
           
         }); 
 
@@ -57,7 +58,7 @@ $(document).ready(function(){
             // Initialize and add the map
 
 
-
+ $('#div-cep').focus();
     
   });
 }
